@@ -1,12 +1,15 @@
 <!-- applicaiton.html -->
 <div ng-include="'app/components/navbar/navbar.html'"></div>
+<script src="/assets/javascripts/particle.js"></script>
+<div class="background">
+  <canvas id="starry-night"></canvas>
+  <div class="overlay"></div>
+</div>
 <div class="container application-view-container">
 	<div class="row">
     <div class="col-md-6 col-md-offset-3">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">My Application</h3>
-        </div>
+      <h1 class="application-title">My Application</h1>
+      <div class="panel panel-default application-panel">
         <div class="panel-body">
           <form class="form-horizontal">
             <div class="form-group">
@@ -172,7 +175,7 @@
       </div>
 
 
-      <div class="panel panel-default" ng-show="(phase >= 2) && (teamsEnabled)">
+      <div class="panel panel-default application-panel" ng-show="(phase >= 2) && (teamsEnabled)">
         <div class="panel-heading">
           <h3 class="panel-title">My Team</h3>
         </div>
@@ -207,3 +210,38 @@
 
 
 </div>
+
+<script>
+  Particles.init('starry-night');
+  Particles.behavior({
+    path: function(x) {
+      return (-0.5 * x) + 300;
+    },
+    speed: function() {
+      return 0.2;
+    },
+    offset: function() {
+      return (Math.random() * 6) - 3;
+    },
+    backgroundColor: '#594269',
+    color: function() {
+      var rn = Math.random();
+      if (rn < 0.2) {
+        return 'rgba(255, 255, 255, 1.0)';
+      } else if (rn < 0.4) {
+        return 'rgba(255, 255, 255, 0.6)';
+      } else if (rn < 0.6) {
+        return 'rgba(255, 255, 255, 0.4)';
+      } else if (rn < 0.8) {
+        return 'rgba(255, 255, 255, 0.2)';
+      } else {
+        return 'rgba(255, 255, 255, 0.1)';
+      }
+    },
+    size: 2,
+    count: 1000,
+    placement: 'random'
+  });
+  Particles.start();
+
+</script>
